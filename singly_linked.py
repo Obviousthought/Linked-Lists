@@ -117,6 +117,7 @@ class LinkedList:
 		# print "-->Current.next is %r." % current.next.data
 		while current.next != None:
 			current = next
+			""" 'next' in the following line is showing up as a NoneType object, fix it """
 			next = current.next
 			current.next = self.head
 			self.head = current
