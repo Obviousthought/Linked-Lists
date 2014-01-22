@@ -17,7 +17,7 @@ class CircleLinkedList(object):
 		self.tail = None
 		self.length = 0
 
-	# Add node to end of linked list to point to the head node
+	# Add node to end of linked list to point to the head node to create circle
 	def addNode(self, data):
 		node = Node(data)
 		node.data = data
@@ -29,7 +29,7 @@ class CircleLinkedList(object):
 		self.tail = node
 		self.length += 1
 
-	# String representation of the circular linked list
+	# String representation of a circular linked list
 	def __str__(self):
 		list_length = self.length
 		node = self.head
@@ -42,9 +42,12 @@ class CircleLinkedList(object):
 		return "[" + ", ".join(node_list) + "]"
 
 
+
+""" Create the Circular Linked List """
+
 def main():
 	circle_ll = CircleLinkedList()
-	for x in range(1, 11):
+	for x in range(1, 101):
 		circle_ll.addNode(x)
 	print circle_ll
 	
