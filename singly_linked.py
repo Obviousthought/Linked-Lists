@@ -3,19 +3,20 @@
 from random import randint
 # import pdb
 
-class Node:
+class Node(object):
 
 	# Initialize a node
 	def __init__(self, data = None, next = None):
 		self.data = data
 		self.next = next
 
-	# Get the node data in string form
+	
 	def __str__(self):
+		# Node data in string form	
 		return str(self.data)
 
 
-class LinkedList:
+class LinkedList(object):
 
 	# Initialize the linked list
 	def __init__(self):
@@ -23,20 +24,18 @@ class LinkedList:
 		self.tail = self.head
 		self.length = 0
 
-	# Add a new node to the end of the list as the new tail while changing the "old" tail to reference the new tail as next node
+	# Add a new node to the end of the linked list
 	def addNode(self, data):
-		# initialize a new node
+		# Initialize a new node
 		node = Node(data)
 		node.data = data
 
-		# Check if there is a head node, if not then make the new node as the head & tail. Else, assign new node as next and as the tail
+		# Assign new node (check if there is a head node)
 		if self.head == None:
 			self.head = node
-			self.tail = node
-		else:
+		if self.tail != None:
 			self.tail.next = node
-			self.tail = node
-
+		self.tail = node
 		self.length += 1
 
 	# Add a list of nodes to the linked list
@@ -123,7 +122,8 @@ class LinkedList:
 			self.head = current
 		return linked_list
 
-""" Functions to mess around with the linked list """
+
+##### Functions to mess around with the linked list #####
 
 # Remove duplicates from linked list using a dictionary
 def remDuplicates(linked_list):
@@ -140,26 +140,28 @@ def remDuplicates(linked_list):
 			if current.next == None:
 				linked_list.tail = current
 
+# Create a randomized linked list
+def randomLinkedList(length, min, max):
+    linkedlist = LinkedList()
+    for x in range(length):
+        node_data = randint(min, max)
+        linkedlist.addNode(node_data)
+    return linkedlist
+
+
 
 """ Create the linked list """
-if __name__ == '__main__':
+
+def main():
 	linked_list = LinkedList()
 	data_list = list(range(1, 6))
 	linked_list.addManyNodes(data_list)
 	print "Linked List:\n" + str(linked_list)
-	print "Non-Recursive Reversal:\n" + str(linked_list.reverseIter())
+	# print "Non-Recursive Reversal:\n" + str(linked_list.reverseIter())
 	# print "Size of the linked list: " + str(linked_list.listLength()
 	# print "T/F: The linked list has a node with data of 6..." + str(linked_list.hasNode(6))
+	# random_list = randomLinkedList(100,1,100)	
 
 
-
-
-
-
-
-
-
-
-
-
-
+if __name__ == '__main__':
+	main()
