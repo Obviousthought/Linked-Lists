@@ -10,7 +10,7 @@ class Node(object):
 		self.data = data
 		self.next = next
 
-	
+
 	def __str__(self):
 		# Node data in string form	
 		return str(self.data)
@@ -106,22 +106,19 @@ class LinkedList(object):
 	def listLength(self):
 		return self.length
 
-
-	# Reverse a linked list non-recursively (iteratively)
 	def reverseIter(self):
-		current = self.head
 		self.tail = self.head
-		next = current.next
-		# print "-->Current is %r and Next is %r." % (current.data, next.data)
-		# print "-->Current.next is %r." % current.next.data
-		while current.next != None:
-			current = next
-			""" 'next' in the following line is showing up as a NoneType object, fix it """
-			next = current.next
+		current = self.head.next
+		temp = current.next
+		self.head.next = None
+		while temp.next:
 			current.next = self.head
 			self.head = current
-		return linked_list
-
+			current = temp
+			temp = temp.next
+		current.next = self.head
+		self.head = temp
+		self.head.next = current
 
 ##### Functions to mess around with the linked list #####
 
@@ -156,7 +153,9 @@ def main():
 	linked_list = LinkedList()
 	data_list = list(range(1, 6))
 	linked_list.addManyNodes(data_list)
-	print "Linked List:\n" + str(linked_list)
+	print "Linked List: " + str(linked_list)
+	linked_list.reverseIter()
+	print "Reverse: " + str(linked_list)
 	# print "Non-Recursive Reversal:\n" + str(linked_list.reverseIter())
 	# print "Size of the linked list: " + str(linked_list.listLength()
 	# print "T/F: The linked list has a node with data of 6..." + str(linked_list.hasNode(6))

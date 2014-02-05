@@ -35,7 +35,7 @@ class CircleLinkedList(object):
 		list_length = self.length
 		node = self.head
 		node_list = [str(node.data)]
-		i = 1 									# head node has already been added to the list
+		i = 1 						# head node has already been added to the list
 		while i < list_length:
 			node = node.next
 			node_list.append(str(node.data))
